@@ -325,15 +325,11 @@ The impact of _not_ doing this is that the cross-cutting-concern patterns — lo
 
 ## Unresolved questions
 
-- **Prepend into a generic module instance.** The cyclic check handles it, but the lookup paths haven't been heavily exercised. The behaviour is intended to be a direct extension of "prepend into the generic module" but the spec coverage to confirm that has not yet been written.
-
 - **Keyword reservation scope.** `prepend` is reserved as a body-level keyword. Should it be reserved _only_ in class/module/struct body context, leaving `def prepend` at the top level legal? The conservative choice (reserved everywhere, parallel to `include`) is what's proposed; a narrower reservation is an alternative.
 
 - **`Module#ancestors` macro shape.** `TypeNode#ancestors` returning the full MRO with prepended modules at the head matches Ruby. A separate `TypeNode#prepended` would expose only the prepended chain. The latter is mechanical to add once the former is in.
 
 ## Future possibilities
-
-- **`Module#prepend` at runtime / post-definition.** As mentioned in unresolved questions.
 
 - **Interaction with `final` modifiers.** If/when Crystal grows `final` for methods, the interaction with `prepend` (can a final method be wrapped?) will need to be specified.
 
