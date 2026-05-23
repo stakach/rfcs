@@ -1,7 +1,7 @@
 ---
 Feature Name: "module-prepend"
 Start Date: 2026-05-23
-RFC PR: "https://github.com/crystal-lang/rfcs/pull/0000"
+RFC PR: "https://github.com/crystal-lang/rfcs/pull/29"
 Issue: "https://github.com/crystal-lang/crystal/issues/10504"
 Implementation PR: "https://github.com/crystal-lang/crystal/pull/16953"
 ---
