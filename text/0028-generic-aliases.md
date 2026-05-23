@@ -115,7 +115,7 @@ x : Json = {"k" => [1, "two"]}
 
 ### How to think about it
 
-Mentally, a generic alias is a *function from type arguments to a type*. At every use site the compiler evaluates that function and the rest of the program proceeds as if the user had written the result. Nothing about the runtime model of Crystal changes; this is purely a way to factor out repetition in type-level expressions.
+Mentally, a generic alias is a _function from type arguments to a type_. At every use site the compiler evaluates that function and the rest of the program proceeds as if the user had written the result. Nothing about the runtime model of Crystal changes; this is purely a way to factor out repetition in type-level expressions.
 
 ## Reference-level explanation
 
@@ -146,7 +146,7 @@ alias Pair(K, V)     = Tuple(K, V)
 # Pair(Symbol, Maybe(Int32)) ≡ Tuple(Symbol, Int32 | Nil)
 ```
 
-No new type is introduced; in particular, `Maybe(Int32)` and `Int32 | Nil` are the *same* type for every purpose the compiler cares about (`is_a?`, `==`, virtual dispatch, generic instantiation cache keys).
+No new type is introduced; in particular, `Maybe(Int32)` and `Int32 | Nil` are the _same_ type for every purpose the compiler cares about (`is_a?`, `==`, virtual dispatch, generic instantiation cache keys).
 
 #### Use sites
 
@@ -159,9 +159,9 @@ A generic alias resolves wherever a type can be written:
 
 #### Recursive aliases
 
-Recursive *non-generic* aliases remain supported (they are how recursive structural types like `Json` are expressed in Crystal today). The alias body is evaluated lazily and the recursion bottoms out where the body refers to the alias name in a position that doesn't immediately require the resolved type.
+Recursive _non-generic_ aliases remain supported (they are how recursive structural types like `Json` are expressed in Crystal today). The alias body is evaluated lazily and the recursion bottoms out where the body refers to the alias name in a position that doesn't immediately require the resolved type.
 
-A generic alias that recursively references itself with the same type parameters expands like any other recursive alias. A generic alias that references itself with *different* type parameters expands the substitution at each use; if no fixed point exists, the compiler reports a "recursive alias can't be expanded" error at the use site, mirroring the existing behaviour for non-generic aliases that can't be resolved.
+A generic alias that recursively references itself with the same type parameters expands like any other recursive alias. A generic alias that references itself with _different_ type parameters expands the substitution at each use; if no fixed point exists, the compiler reports a "recursive alias can't be expanded" error at the use site, mirroring the existing behaviour for non-generic aliases that can't be resolved.
 
 #### Arity checking
 
@@ -175,7 +175,7 @@ A non-generic alias used with type arguments (`Maybe(Int32)` where `Maybe` was d
 
 ### How it composes with existing features
 
-- **Restrictions.** A generic alias appearing in a restriction expands inside the matcher *before* the existing restriction algorithm runs. The matcher sees only the substituted form, so `def f(x : Maybe(T)) forall T` behaves identically to `def f(x : T | Nil) forall T`.
+- **Restrictions.** A generic alias appearing in a restriction expands inside the matcher _before_ the existing restriction algorithm runs. The matcher sees only the substituted form, so `def f(x : Maybe(T)) forall T` behaves identically to `def f(x : T | Nil) forall T`.
 
 - **Generic instantiations.** A generic alias passed as a type argument to another generic (`Array(Maybe(Int32))`) is substituted first, then the outer generic is instantiated with the result.
 
@@ -215,7 +215,7 @@ Resolution of `Foo(A, B)` is cached on the alias type, keyed by the tuple of arg
 
 - **Splat type parameters.** Deliberately deferred. The semantics around `alias Foo(*T) = Tuple(*T)` versus `alias Foo(*T) = ...` interacting with `forall` are non-obvious and warrant their own design. Rejecting splats at parse time keeps the door open.
 
-The impact of *not* doing this is a continuing pattern of either copy-pasted aliases or unnecessary wrapper classes. Both make API surfaces noisier and harder to maintain.
+The impact of _not_ doing this is a continuing pattern of either copy-pasted aliases or unnecessary wrapper classes. Both make API surfaces noisier and harder to maintain.
 
 ## Prior art
 
