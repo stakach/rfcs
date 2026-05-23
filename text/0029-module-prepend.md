@@ -325,8 +325,6 @@ The impact of _not_ doing this is that the cross-cutting-concern patterns — lo
 
 ## Unresolved questions
 
-- **Post-definition `prepend`.** Ruby allows `SomeClass.prepend(Mod)` to be called after the class has been defined. Crystal classes are reopenable, but the type structure is finalised at class body level. Whether and how to support post-definition `prepend` is left to a follow-up RFC.
-
 - **Prepend into a generic module instance.** The cyclic check handles it, but the lookup paths haven't been heavily exercised. The behaviour is intended to be a direct extension of "prepend into the generic module" but the spec coverage to confirm that has not yet been written.
 
 - **Keyword reservation scope.** `prepend` is reserved as a body-level keyword. Should it be reserved _only_ in class/module/struct body context, leaving `def prepend` at the top level legal? The conservative choice (reserved everywhere, parallel to `include`) is what's proposed; a narrower reservation is an alternative.
