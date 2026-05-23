@@ -1,7 +1,7 @@
 ---
 Feature Name: "generic-aliases"
 Start Date: 2026-05-23
-RFC PR: "https://github.com/crystal-lang/rfcs/pull/0000"
+RFC PR: "https://github.com/crystal-lang/rfcs/pull/28"
 Issue: "https://github.com/crystal-lang/crystal/issues/2803"
 ---
 
