@@ -63,7 +63,7 @@ Passing the wrong number of type arguments to a generic alias produces a clear c
 ```crystal
 alias Pair(K, V) = Tuple(K, V)
 
-Pair(Int32)                  # error: wrong number of type vars for Pair (given 1, expected 2)
+Pair(Int32) # Error: wrong number of type vars for Pair (given 1, expected 2)
 ```
 
 ### Recursive non-generic aliases are unchanged
