@@ -55,30 +55,6 @@ p = Pair(Symbol, String).new(:hello, "hi")  # resolves to Tuple(Symbol, String)
 The alias is transparent at the use site. The compiler produces exactly the same program as if the user had written the substituted form directly. There is no `Maybe` type at runtime, no method-dispatch difference, and no class hierarchy distinction between `Maybe(Int32)` and `Int32 | Nil` — they are the same type.
 
 
-### With `forall`
-
-Type parameters of a generic alias can themselves be left unbound and unified by a `forall T` clause. The alias body is expanded inside the matcher before unification, so the surrounding `forall` sees the substituted form:
-
-```crystal
-alias Boxed(T) = T
-
-def unbox(value : Boxed(T)) forall T
-  value
-end
-
-unbox(1)        # T = Int32, returns 1
-unbox("hi")     # T = String, returns "hi"
-```
-
-```crystal
-alias KV(K, V) = Tuple(K, V)
-
-def first_key(pair : KV(K, V)) forall K, V
-  pair[0]
-end
-
-first_key({1, "a"})   # K = Int32, V = String, returns 1
-```
 
 ### Wrong arity
 
