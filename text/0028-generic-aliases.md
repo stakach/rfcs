@@ -58,7 +58,7 @@ The alias is transparent at the use site. The compiler produces exactly the same
 
 ### Wrong arity
 
-Passing the wrong number of type arguments to a generic alias produces a clear compile-time error pointing at the alias declaration:
+Passing the wrong number of type arguments to a generic alias produces a clear compile-time error pointing at the alias use:
 
 ```crystal
 alias Pair(K, V) = Tuple(K, V)
