@@ -140,13 +140,6 @@ A non-generic alias used with type arguments (`Maybe(Int32)` where `Maybe` was d
 
 - **Documentation.** A generic alias is documented as `Maybe(T)` with `T` as a free type parameter, exactly as a generic class would be.
 
-### Pretty-printing
-
-The compiler and formatter emit generic aliases with their parameters: `alias Pair(K, V) = Tuple(K, V)`. Use sites are printed with their type arguments. `to_s` of an `AliasType` includes the parameter list.
-
-### Caching
-
-Resolution of `Foo(A, B)` is cached on the alias type, keyed by the tuple of argument types, so a given parameterisation is resolved at most once per program.
 
 ## Drawbacks
 
