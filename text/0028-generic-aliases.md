@@ -66,15 +66,6 @@ alias Pair(K, V) = Tuple(K, V)
 Pair(Int32) # Error: wrong number of type vars for Pair (given 1, expected 2)
 ```
 
-### Recursive non-generic aliases are unchanged
-
-The classic recursive-alias idiom continues to work exactly as before — generic aliases are an additional syntax, not a replacement:
-
-```crystal
-alias Json = Int32 | String | Hash(String, Json) | Array(Json)
-
-x : Json = {"k" => [1, "two"]}
-```
 
 ### How to think about it
 
