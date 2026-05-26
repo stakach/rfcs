@@ -95,9 +95,9 @@ alias Maybe(T)       = T | Nil
 alias StringKeyed(V) = Hash(String, V)
 alias Pair(K, V)     = Tuple(K, V)
 
-# Maybe(Int32)              ≡ Int32 | Nil
-# StringKeyed(User)         ≡ Hash(String, User)
-# Pair(Symbol, Maybe(Int32)) ≡ Tuple(Symbol, Int32 | Nil)
+Maybe(Int32)               == Int32 | Nil                # => true
+StringKeyed(User)          == Hash(String, User)         # => true
+Pair(Symbol, Maybe(Int32)) == Tuple(Symbol, Int32 | Nil) # => true
 ```
 
 No new type is introduced; in particular, `Maybe(Int32)` and `Int32 | Nil` are the _same_ type for every purpose the compiler cares about (`is_a?`, `==`, virtual dispatch, generic instantiation cache keys).
