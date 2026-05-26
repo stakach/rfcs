@@ -113,7 +113,6 @@ A generic alias resolves wherever a type can be written:
 
 #### Recursive aliases
 
-Recursive _non-generic_ aliases remain supported (they are how recursive structural types like `Json` are expressed in Crystal today). The alias body is evaluated lazily and the recursion bottoms out where the body refers to the alias name in a position that doesn't immediately require the resolved type.
 
 A generic alias that recursively references itself with the same type parameters expands like any other recursive alias. A generic alias that references itself with _different_ type parameters expands the substitution at each use; if no fixed point exists, the compiler reports a "recursive alias can't be expanded" error at the use site, mirroring the existing behaviour for non-generic aliases that can't be resolved.
 
