@@ -54,19 +54,6 @@ p = Pair(Symbol, String).new(:hello, "hi")  # resolves to Tuple(Symbol, String)
 
 The alias is transparent at the use site. The compiler produces exactly the same program as if the user had written the substituted form directly. There is no `Maybe` type at runtime, no method-dispatch difference, and no class hierarchy distinction between `Maybe(Int32)` and `Int32 | Nil` — they are the same type.
 
-### As a restriction
-
-A generic alias works as a method-argument restriction in the same way the substituted type would:
-
-```crystal
-alias Pair(K, V) = Tuple(K, V)
-
-def first_of(p : Pair(String, Int32))
-  p[0]
-end
-
-first_of({"hello", 1})  # OK
-```
 
 ### With `forall`
 
